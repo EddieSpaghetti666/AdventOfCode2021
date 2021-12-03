@@ -8,7 +8,7 @@ TEST(Sonarsweep, testInput) {
 }
 
 TEST(Sonarsweep, realInput) {
-  std::cout << answerFromFileInput<int,int>("Day1\\day1Input.txt", depthIncreases) << std::endl;
+  std::cout << answerFromFileInput<int>("Day1\\day1Input.txt", depthIncreases) << std::endl;
 }
 
 TEST(Sonarsweep, windowTestInput) {
@@ -17,5 +17,5 @@ TEST(Sonarsweep, windowTestInput) {
 }
 
 TEST(Sonarsweep, windowRealInput){
-	std::cout << answerFromFileInput<int,int>("Day1\\day1Input.txt", windowDepthIncreases) << std::endl;
+	std::cout << answerFromFileInput<int>("Day1\\day1Input.txt", windowDepthIncreases) << std::endl;
 }

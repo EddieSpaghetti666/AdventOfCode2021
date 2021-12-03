@@ -19,10 +19,10 @@ std::vector<T> parseInputToVector(const std::string& fileName) {
 template <>
 std::vector<std::string> parseInputToVector(const std::string& fileName);
 
-template <typename T, typename R>
-R answerFromFileInput(
+template <typename T>
+int answerFromFileInput(
     const std::string& fileName,
-    std::function<R(const std::vector<T>&)> funcWithVectorInput){
+    std::function<int(const std::vector<T>&)> funcWithVectorInput){
   std::vector<T> dataFromFile = parseInputToVector<T>(fileName);
   return funcWithVectorInput(dataFromFile);
 }
