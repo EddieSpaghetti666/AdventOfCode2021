@@ -12,6 +12,8 @@ void fillLine(std::vector<std::vector<int>>& floorMap, const Point& a,
   Point end = b;
   do {
     floorMap[start.y][start.x] += 1;
+
+    //Move the start point closer to end point
     if (start.x != end.x) start.x = start.x < end.x ? start.x + 1 : start.x - 1;
     if (start.y != end.y) start.y = start.y < end.y ? start.y + 1 : start.y - 1;
   } while (start.x != end.x || start.y != end.y);
