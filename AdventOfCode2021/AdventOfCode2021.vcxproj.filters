@@ -25,6 +25,9 @@
     <Filter Include="day4">
       <UniqueIdentifier>{9ba66fd5-e061-4815-b8c9-66ad5facf2c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="day5">
+      <UniqueIdentifier>{9fbfafb8-c2e6-4835-b3fe-7e92f5001c96}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -57,6 +60,12 @@
     <ClCompile Include="Day4\day4_test.cpp">
       <Filter>day4</Filter>
     </ClCompile>
+    <ClCompile Include="Day5\day5.cpp">
+      <Filter>day5</Filter>
+    </ClCompile>
+    <ClCompile Include="Day5\day5_test.cpp">
+      <Filter>day5</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -73,6 +82,9 @@
     </ClInclude>
     <ClInclude Include="Day4\day4.h">
       <Filter>day4</Filter>
+    </ClInclude>
+    <ClInclude Include="Day5\day5.h">
+      <Filter>day5</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
