@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 template <typename T>
 std::vector<T> parseInputToVector(const std::string& fileName) {
@@ -11,9 +12,10 @@ std::vector<T> parseInputToVector(const std::string& fileName) {
   T data;
   std::ifstream file(fileName);
   while (file >> data) {
+    if(file.peek() == ',') file.get();
     result.push_back(data);
   }
-  return result;
+   return result;
 }
 
 template <>
