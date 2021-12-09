@@ -5,14 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="day1">
       <UniqueIdentifier>{ab94e470-baa5-41c5-8572-10800f9e30ee}</UniqueIdentifier>
     </Filter>
@@ -36,6 +28,9 @@
     </Filter>
     <Filter Include="day8">
       <UniqueIdentifier>{9b126d8d-2f1f-431c-92d9-a9c36ac7c517}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="day9">
+      <UniqueIdentifier>{d922e6c3-45b5-4c0b-988e-4c057919588e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +88,12 @@
     <ClCompile Include="Day8\day8_test.cpp">
       <Filter>day8</Filter>
     </ClCompile>
+    <ClCompile Include="Day9\day9.cpp">
+      <Filter>day9</Filter>
+    </ClCompile>
+    <ClCompile Include="Day9\day9_test.cpp">
+      <Filter>day9</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -122,13 +123,8 @@
     <ClInclude Include="Day8\day8.h">
       <Filter>day8</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Day1\day1Input.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="Day2\day2Input.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
+    <ClInclude Include="Day9\day9.h">
+      <Filter>day9</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
