@@ -39,8 +39,6 @@ bool isLowPoint(const std::vector<std::vector<int>>& heightMap, const int i,
   }
   return true;
 }
-bool isLowPoint(const std::vector<std::vector<int>>& heightMap, std::vector<int>::iterator height){
-}
 std::vector<int> lowPoints(const std::vector<std::vector<int>>& heightMap) {
   std::vector<int> lowPoints;
   for (int i = 0; i < heightMap.size(); ++i) {
