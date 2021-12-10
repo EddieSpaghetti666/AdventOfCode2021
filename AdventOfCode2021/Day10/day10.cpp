@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <deque>
 #include <map>
+#include <numeric>
 #include <optional>
 #include <stack>
 
@@ -56,30 +57,18 @@ int syntaxScore(const std::string& fileName) {
   const auto lines = parseInputToVector<std::string>(fileName);
   std::map<char, int> braceScores = {
       {')', 3}, {']', 57}, {'}', 1197}, {'>', 25137}};
-  int syntaxErrorTotal = 0;
-  for (const auto& line : lines) {
-    auto firstError = firstMismatch(line);
-    if (firstError) {
-      syntaxErrorTotal += braceScores[firstError.value()];
-    }
-  }
 
-  return syntaxErrorTotal;
+  return std::accumulate(
+      lines.begin(), lines.end(), 0, [=](auto accum, auto line) mutable {
+        auto badBrace = firstMismatch(line);
+        return badBrace ? accum + braceScores[*badBrace] : accum;
+      });
 }
 
 char matchingCloseBrace(const char b) {
-  switch (b) {
-    case '(':
-      return ')';
-    case '[':
-      return ']';
-    case '{':
-      return '}';
-    case '<':
-      return '>';
-    default:
-      assert(false);
-  }
+  const std::map<char, char> matchingBraces = {
+      {'(', ')'}, {'[', ']'}, {'{', '}'}, {'<', '>'}};
+  return matchingBraces.find(b)->second;
 }
 
 std::optional<std::string> completionPattern(const std::string& line) {
