@@ -7,20 +7,9 @@
 #include "../common.h"
 
 std::vector<std::vector<int>> getHeightMap(const std::string& fileName) {
-  std::vector<std::vector<int>> heightMap;
-  std::vector<int> row;
-
-  std::fstream file(fileName);
-  std::string line;
-  while (std::getline(file, line)) {
-    std::transform(line.begin(), line.end(), std::back_inserter(row),
-                   [](char c) { return c - '0'; });
-    heightMap.push_back(row);
-    row.clear();
-  }
-
-  return heightMap;
+  return as2DVector(fileName);
 }
+
 bool validCoords(const std::vector<std::vector<int>>& heightMap, const int i,
                  const int j) {
   return i >= 0 && i < heightMap.size() && j >= 0 && j < heightMap[i].size();

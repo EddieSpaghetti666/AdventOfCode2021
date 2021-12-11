@@ -35,6 +35,9 @@
     <Filter Include="day10">
       <UniqueIdentifier>{3fd21473-039f-4c50-8fdb-ab44a213b412}</UniqueIdentifier>
     </Filter>
+    <Filter Include="day11">
+      <UniqueIdentifier>{2c03f19e-bf53-49d8-b819-8ef646b1e75c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -103,6 +106,12 @@
     <ClCompile Include="Day10\day10_test.cpp">
       <Filter>day10</Filter>
     </ClCompile>
+    <ClCompile Include="Day11\day11.cpp">
+      <Filter>day11</Filter>
+    </ClCompile>
+    <ClCompile Include="Day11\day11_test.cpp">
+      <Filter>day11</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -137,6 +146,9 @@
     </ClInclude>
     <ClInclude Include="Day10\day10.h">
       <Filter>day10</Filter>
+    </ClInclude>
+    <ClInclude Include="Day11\day11.h">
+      <Filter>day11</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -29,3 +29,4 @@ int answerFromFileInput(
   return funcWithVectorInput(dataFromFile);
 }
 
+std::vector<std::vector<int>> as2DVector(const std::string& fileName);
