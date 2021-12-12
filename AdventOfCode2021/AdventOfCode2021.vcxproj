@@ -98,6 +98,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -113,6 +114,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -162,6 +164,8 @@
     <ClCompile Include="Day10\day10_test.cpp" />
     <ClCompile Include="Day11\day11.cpp" />
     <ClCompile Include="Day11\day11_test.cpp" />
+    <ClCompile Include="Day12\day12.cpp" />
+    <ClCompile Include="Day12\day12_test.cpp" />
     <ClCompile Include="Day1\day1.cpp" />
     <ClCompile Include="Day1\day1_test.cpp" />
     <ClCompile Include="Day2\day2.cpp" />
@@ -186,6 +190,7 @@
     <ClInclude Include="common.h" />
     <ClInclude Include="Day10\day10.h" />
     <ClInclude Include="Day11\day11.h" />
+    <ClInclude Include="Day12\day12.h" />
     <ClInclude Include="Day1\day1.h" />
     <ClInclude Include="Day2\day2.h" />
     <ClInclude Include="Day3\day3.h" />
