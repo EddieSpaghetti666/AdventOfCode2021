@@ -7,11 +7,12 @@
 #include <queue>
 #include <string>
 #include <utility>
+#include <set>
 
 #include "../common.h"
 
 using Graph = std::map<std::string, std::vector<std::string>>;
-
+using Path = std::vector<std::string>;
 std::pair<std::string, std::string> getVertices(const std::string& connection) {
   // I'm assuming that the connection is of the form 'vertex1-vertex2' !
   auto seperator = std::find(connection.begin(), connection.end(), '-');
@@ -19,7 +20,7 @@ std::pair<std::string, std::string> getVertices(const std::string& connection) {
                         std::string(seperator + 1, connection.end()));
 }
 
-Graph createCaveGraph(const std::vector<std::string>& caveMap) {
+Graph createCaveGraph(const Path& caveMap) {
   Graph caveGraph;
   for (auto connection : caveMap) {
     auto [vertex1, vertex2] = getVertices(connection);
@@ -33,17 +34,17 @@ bool isBig(const std::string& cave) {
   return std::all_of(cave.begin(), cave.end(), isupper);
 }
 
-bool canBeRevisited(const std::vector<std::string>& path,
+bool canBeRevisited(const Path& path,
                     const std::string& cave) {
   return isBig(cave) || std::find(path.begin(), path.end(), cave) == path.end();
 }
 
 int pathCount(
     const Graph caveGraph,
-    std::function<bool(const std::vector<std::string>&, const std::string&)>
+    std::function<bool(const Path&, const std::string&)>
         canVisit) {
-  std::vector<std::vector<std::string>> paths;
-  std::queue<std::vector<std::string>> queue;
+  std::vector<Path> paths;
+  std::queue<Path> queue;
   queue.push({"start"});
   const auto END = "end";
   while (!queue.empty()) {
@@ -51,7 +52,6 @@ int pathCount(
     queue.pop();
 
     auto lastVertex = currentPath.back();
-
     if (lastVertex == END) {
       paths.push_back(currentPath);
     } else {
@@ -75,16 +75,18 @@ int totalPaths(const std::string& fileName) {
   return pathCount(caveGraph, canBeRevisited);
 }
 
-bool canVisit2(std::vector<std::string> path, const std::string& cave) {
+bool canVisit2(Path path, const std::string& cave) {
   if (canBeRevisited(path, cave))
     return true;
   else if (cave == "start" || cave == "end")
     return false;
   else {
-    //This is extremelly inefficient! 
-    std::vector<std::string> noBigCaves;
+    //This is extremely inefficient! 
+    Path noBigCaves;
     std::copy_if(path.begin(), path.end(), std::back_inserter(noBigCaves),
                  [](auto cave) { return !isBig(cave); });
+
+    //check if there are 2 of one small cave on the path already
     std::sort(noBigCaves.begin(), noBigCaves.end());
     return std::adjacent_find(noBigCaves.begin(), noBigCaves.end()) ==
            noBigCaves.end();
@@ -94,6 +96,5 @@ bool canVisit2(std::vector<std::string> path, const std::string& cave) {
 int totalPaths2(const std::string& fileName) {
   const auto caveMap = parseInputToVector<std::string>(fileName);
   const auto caveGraph = createCaveGraph(caveMap);
-  auto answer = pathCount(caveGraph, canVisit2);
   return pathCount(caveGraph, canVisit2);
 }
