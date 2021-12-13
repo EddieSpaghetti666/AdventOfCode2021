@@ -13,6 +13,7 @@
 
 using Graph = std::map<std::string, std::vector<std::string>>;
 using Path = std::vector<std::string>;
+
 std::pair<std::string, std::string> getVertices(const std::string& connection) {
   // I'm assuming that the connection is of the form 'vertex1-vertex2' !
   auto seperator = std::find(connection.begin(), connection.end(), '-');
@@ -34,13 +35,13 @@ bool isBig(const std::string& cave) {
   return std::all_of(cave.begin(), cave.end(), isupper);
 }
 
-bool canBeRevisited(const Path& path,
+bool canVisit(const Path& path,
                     const std::string& cave) {
   return isBig(cave) || std::find(path.begin(), path.end(), cave) == path.end();
 }
 
 int pathCount(
-    const Graph caveGraph,
+    const Graph& caveGraph,
     std::function<bool(const Path&, const std::string&)>
         canVisit) {
   std::vector<Path> paths;
@@ -71,25 +72,24 @@ int pathCount(
 int totalPaths(const std::string& fileName) {
   const auto caveMap = parseInputToVector<std::string>(fileName);
   auto caveGraph = createCaveGraph(caveMap);
-
-  return pathCount(caveGraph, canBeRevisited);
+  return pathCount(caveGraph, canVisit);
 }
 
 bool canVisit2(Path path, const std::string& cave) {
-  if (canBeRevisited(path, cave))
+  if (canVisit(path, cave))
     return true;
   else if (cave == "start" || cave == "end")
     return false;
   else {
     //This is extremely inefficient! 
-    Path noBigCaves;
-    std::copy_if(path.begin(), path.end(), std::back_inserter(noBigCaves),
+    Path smallCaves;
+    std::copy_if(path.begin(), path.end(), std::back_inserter(smallCaves),
                  [](auto cave) { return !isBig(cave); });
 
     //check if there are 2 of one small cave on the path already
-    std::sort(noBigCaves.begin(), noBigCaves.end());
-    return std::adjacent_find(noBigCaves.begin(), noBigCaves.end()) ==
-           noBigCaves.end();
+    std::sort(smallCaves.begin(), smallCaves.end());
+    return std::adjacent_find(smallCaves.begin(), smallCaves.end()) ==
+           smallCaves.end();
   }
 }
 
