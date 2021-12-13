@@ -94,30 +94,44 @@ int pointsAfter1Fold(const std::string& fileName) {
   return pointsAfterFold.size();
 }
 
-void pointsAfterEveryFold(const std::string& fileName) {
-  const auto paper = parseInputToVector<std::string>(fileName);
-  auto points = getPoints(paper);
-  auto folds = getFolds(paper);
-  auto pointsAfterFold = foldPaper(points, folds);
-  auto cols = std::max_element(
-      pointsAfterFold.cbegin(), pointsAfterFold.cend(),
-      [](auto point1, auto point2) { return point1.first < point2.first; })->first;
-  auto rows = std::max_element(
-      pointsAfterFold.cbegin(), pointsAfterFold.cend(),
-      [](auto point1, auto point2) { return point1.second < point2.second; })->second;
-  std::vector<std::vector<char>> code(rows + 1, std::vector<char>(cols + 1, '.'));
+std::pair<size_t, size_t> rowsAndCols(const std::set<Point>& points) {
+  auto highestCol = std::max_element(points.cbegin(), points.cend(),
+                                     [](auto point1, auto point2) {
+                                       return point1.first < point2.first;
+                                     })
+                        ->first;
+  auto highestRow = std::max_element(points.cbegin(), points.cend(),
+                                     [](auto point1, auto point2) {
+                                       return point1.second < point2.second;
+                                     })
+                        ->second;
+  return std::make_pair(highestRow, highestCol);
+}
 
-  for(auto point : pointsAfterFold){
-    auto [col, row] = point;
-    code[row][col] = '#';
-  }
-
-  for(auto row : code){
-    for(const auto c : row){
+void printCode(const std::vector<std::vector<char>>& code) {
+  for (auto row : code) {
+    for (const auto c : row) {
       std::cout << c;
     }
     std::cout << std::endl;
   }
+}
+void pointsAfterEveryFold(const std::string& fileName) {
+  const auto paper = parseInputToVector<std::string>(fileName);
+  auto points = getPoints(paper);
+  auto folds = getFolds(paper);
 
-  pointsAfterFold.size();
+  auto pointsAfterFold = foldPaper(points, folds);
+
+  auto [rows, cols] = rowsAndCols(pointsAfterFold);
+  std::vector<std::vector<char>> code(
+      static_cast<size_t>(rows + 1),
+      std::vector<char>(static_cast<size_t>(cols + 1), '.'));
+
+  for (auto point : pointsAfterFold) {
+    auto [col, row] = point;
+    code[row][col] = '#';
+  }
+
+  printCode(code);
 }
