@@ -85,7 +85,7 @@ std::set<Point> foldPaper(std::set<Point> points,
   return points;
 }
 
-int pointsAfter1Fold(const std::string& fileName) {
+size_t pointsAfter1Fold(const std::string& fileName) {
   const auto paper = parseInputToVector<std::string>(fileName);
   auto points = getPoints(paper);
   auto folds = getFolds(paper);
